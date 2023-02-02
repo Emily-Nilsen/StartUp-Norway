@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
+import { Container } from '@/components/Container'
 import { Hero } from '@/components/Hero'
-import { BlogHeroText } from '@/components/BlogHeroText'
 import { BlogPreview } from '@/components/BlogPreview'
 
 import { Client } from '@notionhq/client'
@@ -27,16 +27,16 @@ export default function Home({ posts }) {
             <div className="bg-white h-1/3 sm:h-2/3" />
           </div>
           <div className="relative mx-auto max-w-7xl">
-            <div className="text-center">
+            <div className="sm:text-center">
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                 Step-by-step:
                 <br />
                 Starting a successful small business in Norway
               </h2>
               <p className="max-w-2xl mx-auto mt-3 text-xl text-gray-500 sm:mt-4">
-                The information on this blog gives you an idea of the costs, how
-                to make your website and other practical topics that may be
-                useful in starting a small business in Norway.
+                StartUp Norway aims to give you an idea of costs, the steps
+                involved in making your website and other practical topics that
+                can help you start a small business in Norway.
               </p>
             </div>
             <div className="grid max-w-lg gap-5 mx-auto mt-12 lg:max-w-none lg:grid-cols-3">

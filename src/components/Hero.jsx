@@ -4,6 +4,7 @@ import { Button } from '@/components/Button'
 import { GridPattern } from '@/components/GridPattern'
 import { StarRating } from '@/components/StarRating'
 import coverImage from '@/images/cover.jpg'
+import { Container } from './Container'
 
 function Testimonial() {
   return (
@@ -56,10 +57,11 @@ export function Hero() {
         <div className="pt-16 bg-white lg:col-span-7 lg:bg-transparent lg:pt-0 lg:pl-16 xl:pl-20">
           <div className="px-4 mx-auto sm:px-6 md:max-w-2xl md:px-4 lg:px-0">
             <h1 className="text-5xl font-extrabold font-display text-slate-900 sm:text-6xl">
-              StartUp Norway: Your Guide to Entrepreneurship
+              StartUp Norway
             </h1>
             <p className="mt-4 text-3xl text-slate-600">
-              Navigating the cost and creation of your small business.
+              Your guide to navigating the cost and creation of your small
+              business in Norway.
             </p>
             <div className="flex gap-4 mt-8">
               <Button href="#free-chapters" color="blue">

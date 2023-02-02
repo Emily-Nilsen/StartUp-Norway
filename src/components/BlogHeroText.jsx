@@ -1,3 +1,5 @@
+import { Container } from '@/components/Container'
+
 export function BlogHeroText({ children }) {
   return (
     <div className="relative px-6 pt-16 pb-20 bg-gray-50 lg:px-8 lg:pt-24 lg:pb-28">
