@@ -46,7 +46,9 @@ export default function Home({ posts }) {
                     title={post.properties.Name.title[0].plain_text}
                     excerpt={post.properties.Excerpt.rich_text[0].plain_text}
                     author={post.properties.Author.rich_text[0].plain_text}
+                    authorImg={post.properties.AuthorImg.files[0].name}
                     imgUrl={post.properties.ImgUrl.files[0].name}
+                    minToRead={post.properties.MinToRead.number}
                   />
                 </div>
               ))}
