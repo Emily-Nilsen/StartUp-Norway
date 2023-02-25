@@ -1,10 +1,12 @@
 import Head from 'next/head'
-
+import Link from 'next/link'
 import { Container } from '@/components/Container'
 import { Hero } from '@/components/Hero'
 import { BlogPreview } from '@/components/BlogPreview'
 
-import { Client } from '@notionhq/client'
+import { getDatabase } from '../../lib/notion'
+
+export const databaseId = process.env.NOTION_DATABASE_ID
 
 export default function Home({ posts }) {
   console.log(posts)
@@ -42,14 +44,23 @@ export default function Home({ posts }) {
             <div className="grid max-w-lg gap-5 mx-auto mt-12 lg:max-w-none lg:grid-cols-3">
               {posts.map((post) => (
                 <div key={post.id}>
-                  <BlogPreview
-                    title={post.properties.Name.title[0].plain_text}
-                    excerpt={post.properties.Excerpt.rich_text[0].plain_text}
-                    author={post.properties.Author.rich_text[0].plain_text}
-                    authorImg={post.properties.AuthorImg.files[0].name}
-                    imgUrl={post.properties.ImgUrl.files[0].name}
-                    minToRead={post.properties.MinToRead.number}
-                  />
+                  <Link href={`/${post.id}`}>
+                    <BlogPreview
+                      title={post.properties.Name.title[0].plain_text}
+                      category={post.properties.Tags.multi_select[0].name}
+                      categoryColour={
+                        post.properties.Tags.multi_select[0].color
+                      }
+                      excerpt={post.properties.Excerpt.rich_text[0].plain_text}
+                      author={post.properties.Author.rich_text[0].plain_text}
+                      authorPosition={
+                        post.properties.AuthorPosition.rich_text[0].plain_text
+                      }
+                      authorImg={post.properties.AuthorImg.files[0].name}
+                      imgUrl={post.properties.ImgUrl.files[0].name}
+                      minToRead={post.properties.MinToRead.number}
+                    />
+                  </Link>
                 </div>
               ))}
             </div>
@@ -60,17 +71,16 @@ export default function Home({ posts }) {
   )
 }
 
-export async function getStaticProps() {
-  const notion = new Client({ auth: process.env.NOTION_API_KEY })
-
-  const response = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID,
-  })
+export const getStaticProps = async () => {
+  const database = await getDatabase(databaseId)
 
   return {
     props: {
-      posts: response.results,
+      posts: database,
     },
-    revalidate: 1,
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every second
+    revalidate: 1, // In seconds
   }
 }
