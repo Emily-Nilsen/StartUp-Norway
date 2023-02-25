@@ -266,16 +266,6 @@ export default function Post({ page, blocks }) {
               ← Go home
             </Link>
           </section>
-          <div>
-            <video
-              width="100%"
-              controls
-              playsInline
-              // poster="https://res.cloudinary.com/dt3k2apqd/image/upload/q_auto/Loop%20Film/bmw-large_rbr1c8.webp"
-            >
-              <source src={page.properties.VideoUrl.url} type="video/mp4" />
-            </video>
-          </div>
         </Container>
       </article>
     </div>
